@@ -4,12 +4,12 @@ import seaborn as sns
 from pylab import *
 # numerical data file
 filename="../output/results.dat"
-xLen,iDen,eDen,iVel,eVel,rho,phi,ef = np.loadtxt(filename, unpack=True)
+xLen,i1Den,i2Den,eDen,i1Vel,i2Vel,eVel,rho,phi,ef = np.loadtxt(filename, unpack=True)
 # disp(data_act.shape)
 ActiveSubplot = True
 numCells = 200 #copy it from .ini file
-nTimeSteps = 1000 #copy it from .ini file
-nTimePhase = 2    #Stage of simulation
+nTimeSteps = 20000 #copy it from .ini file
+nTimePhase = 350    #Stage of simulation
 
 
 if nTimePhase == 0:
@@ -19,7 +19,7 @@ inix = nTimePhase*numCells+nTimePhase
 
 if ActiveSubplot==False:
     figure(1)
-    plt.plot(xLen[inix:inix+numCells],iDen[inix:inix+numCells], linewidth=1,color='blue')
+    plt.plot(xLen[inix:inix+numCells],i1Den[inix:inix+numCells]+i2Den[inix:inix+numCells], linewidth=1,color='blue')
     plt.plot(xLen[inix:inix+numCells],eDen[inix:inix+numCells], linewidth=1,color='red')
     plt.legend(('$N_i$', '$N_e$'))
     # plt.plot(xLen,eDen, linewidth=4,color='blue')
@@ -51,7 +51,7 @@ if ActiveSubplot==False:
 if ActiveSubplot==True:
     fig, ax = plt.subplots(figsize=(10, 8))
     plt.subplot(221)
-    plt.plot(xLen[inix:inix+numCells],iDen[inix:inix+numCells], linewidth=1,color='blue')
+    plt.plot(xLen[inix:inix+numCells],i1Den[inix:inix+numCells]+i2Den[inix:inix+numCells], linewidth=1,color='blue')
     plt.plot(xLen[inix:inix+numCells],eDen[inix:inix+numCells], linewidth=1,color='red')
     plt.legend(('$N_i$', '$N_e$'))
     # plt.plot(xLen,eDen, linewidth=4,color='blue')
